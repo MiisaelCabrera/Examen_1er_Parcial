@@ -13,7 +13,15 @@ public class Product {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public float getAmount() {
         return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 }

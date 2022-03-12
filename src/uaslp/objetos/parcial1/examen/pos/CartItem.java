@@ -16,8 +16,7 @@ public class CartItem {
         return product;
     }
 
-    public void setProduct(Product product,int quantity) {
-        this.quantity+=quantity;
+    public void setProduct(Product product) {
         this.product = product;
     }
 

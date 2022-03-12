@@ -5,18 +5,31 @@ import java.util.ArrayList;
 public class PointOfSale {
     private ArrayList<CartItem> items;
 
+    public PointOfSale(){
+        items = new ArrayList<>();
+    }
+
     public void addToCart(int quantity, Product product) {
-        CartItem item = new CartItem();
-        item.setProduct(product,quantity);
-        items.add(quantity,item);
+
+        for(CartItem item: items){
+            if(item.getProductName().equals(product.getName())){
+                item.setQuantity(item.getQuantity() + quantity);
+                return;
+            }
+        }
+
+        CartItem cartItem = new CartItem();
+
+        cartItem.setQuantity(quantity);
+        cartItem.setProduct(product);
+
+        items.add(cartItem);
     }
 
     public float getTotal(){
-        float total=0;
-        CartItem item=new CartItem();
-        for(int i=1;i<=items.size();i++){
-            item=items.get(i);
-            total+=item.getAmount();
+        float total = 0;
+        for(CartItem item: items){
+            total += item.getAmount() * item.getQuantity();
         }
         return total;
     }
@@ -24,7 +37,13 @@ public class PointOfSale {
     public ArrayList<CartItem> getProducts() {
         return items;
     }
+
     public int getCountByName(String name){
+        for (CartItem item: items) {
+            if(item.getProductName().equals(name)){
+                return item.getQuantity();
+            }
+        }
         return 0;
 
     }
